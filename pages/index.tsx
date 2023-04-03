@@ -2,6 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import Head from "next/head";
 import Hands from "../components/Hands";
 import LineHands from "../components/LineHands";
+import SphereIndexFingers from "../components/SphereIndexFingers";
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
 
       <main id="root">
         <Canvas>
-          <LineHands />
+          <SphereIndexFingers />
         </Canvas>
       </main>
     </div>

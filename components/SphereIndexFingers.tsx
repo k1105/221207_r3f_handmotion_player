@@ -1,7 +1,7 @@
 import { OrbitControls, Line } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef, useMemo } from "react";
-import { Group } from "three";
+import { Color, Group } from "three";
 import { updatePoses } from "../lib/updatePoses";
 
 type Keyframe = {
@@ -23,14 +23,33 @@ export default function LineHands() {
   const ring = useRef(null);
   const pinky = useRef(null);
 
+  const fin0 = useRef(null);
+  const fin1 = useRef(null);
+  const fin2 = useRef(null);
+  const fin3 = useRef(null);
+  const fin4 = useRef(null);
+  const fin5 = useRef(null);
+  const fin6 = useRef(null);
+  const fin7 = useRef(null);
+  const fin8 = useRef(null);
+  const fin9 = useRef(null);
+  const fin10 = useRef(null);
+
   const speed = 0.1; //0.1ずつ進行する
 
-  const fingers = [
-    { ref: thumb, name: "thumb" },
-    { ref: index, name: "index" },
-    { ref: middle, name: "middle" },
-    { ref: ring, name: "ring" },
-    { ref: pinky, name: "pinky" },
+  const fingers = [{ ref: index, name: "index" }];
+  const drawFingers = [
+    { ref: fin0, name: "index" },
+    { ref: fin1, name: "index" },
+    { ref: fin2, name: "index" },
+    { ref: fin3, name: "index" },
+    { ref: fin4, name: "index" },
+    { ref: fin5, name: "index" },
+    { ref: fin6, name: "index" },
+    { ref: fin7, name: "index" },
+    { ref: fin8, name: "index" },
+    { ref: fin9, name: "index" },
+    { ref: fin10, name: "index" },
   ];
 
   useMemo(() => {
@@ -71,11 +90,11 @@ export default function LineHands() {
         ];
       }
 
-      for (let i = 0; i < fingers.length; i++) {
-        const finger = fingers[i];
+      for (let i = 0; i < drawFingers.length; i++) {
+        const finger = drawFingers[i];
         const fingerPoints = [];
         fingerPoints.push(points.current[0]);
-        for (let j = 4 * i + 1; j < 4 * (i + 1) + 1; j++) {
+        for (let j = 5; j < 9; j++) {
           fingerPoints.push(points.current[j]);
         }
         if (finger.ref.current !== null) {
@@ -90,14 +109,15 @@ export default function LineHands() {
       <group ref={groupRef}>
         {(() => {
           let lines = [];
-          for (const finger of fingers) {
+          for (let i = 0; i < drawFingers.length; i++) {
             lines.push(
               <Line
-                ref={finger.ref}
-                key={finger.name}
+                ref={drawFingers[i].ref}
+                key={i}
                 points={new Array(15).fill(0)}
-                color="white"
+                color="yellow"
                 position={[0, 0, 0]}
+                rotation={[0, (Math.PI * i) / 5, 0]}
                 lineWidth={20}
               />
             );
