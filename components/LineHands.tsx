@@ -17,11 +17,13 @@ export default function LineHands() {
   const keyframes = useRef<number[][]>([]);
   const points = useRef<number[][]>([]);
 
-  const thumb = useRef(null);
-  const index = useRef(null);
-  const middle = useRef(null);
-  const ring = useRef(null);
-  const pinky = useRef(null);
+  const [thumb, index, middle, ring, pinky] = [
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+  ];
 
   const speed = 0.1; //0.1ずつ進行する
 
